@@ -11,19 +11,18 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DemoRouteImport } from './routes/demo'
+import { Route as MovilRouteRouteImport } from './routes/_movil/route'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedUsuariosRouteImport } from './routes/_authenticated/usuarios'
 import { Route as AuthenticatedSeguimientoRouteImport } from './routes/_authenticated/seguimiento'
 import { Route as AuthenticatedInasistentesRouteImport } from './routes/_authenticated/inasistentes'
-import { Route as AuthenticatedEvidenciasRouteImport } from './routes/_authenticated/evidencias'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCrearActaRouteImport } from './routes/_authenticated/crear-acta'
 import { Route as AuthenticatedActasRouteImport } from './routes/_authenticated/actas'
-import { Route as AuthenticatedMovilSemaforoRouteImport } from './routes/_authenticated/movil.semaforo'
-import { Route as AuthenticatedMovilQrRouteImport } from './routes/_authenticated/movil.qr'
-import { Route as AuthenticatedMovilCalendarioRouteImport } from './routes/_authenticated/movil.calendario'
-import { Route as AuthenticatedMovilAsistenciaRouteImport } from './routes/_authenticated/movil.asistencia'
+import { Route as MovilMovilQrRouteImport } from './routes/_movil/movil.qr'
+import { Route as MovilMovilCalendarioRouteImport } from './routes/_movil/movil.calendario'
+import { Route as MovilMovilAsistenciaRouteImport } from './routes/_movil/movil.asistencia'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -33,6 +32,10 @@ const LoginRoute = LoginRouteImport.update({
 const DemoRoute = DemoRouteImport.update({
   id: '/demo',
   path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovilRouteRoute = MovilRouteRouteImport.update({
+  id: '/_movil',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -61,11 +64,6 @@ const AuthenticatedInasistentesRoute =
     path: '/inasistentes',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedEvidenciasRoute = AuthenticatedEvidenciasRouteImport.update({
-  id: '/evidencias',
-  path: '/evidencias',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -81,29 +79,21 @@ const AuthenticatedActasRoute = AuthenticatedActasRouteImport.update({
   path: '/actas',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedMovilSemaforoRoute =
-  AuthenticatedMovilSemaforoRouteImport.update({
-    id: '/movil/semaforo',
-    path: '/movil/semaforo',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedMovilQrRoute = AuthenticatedMovilQrRouteImport.update({
+const MovilMovilQrRoute = MovilMovilQrRouteImport.update({
   id: '/movil/qr',
   path: '/movil/qr',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  getParentRoute: () => MovilRouteRoute,
 } as any)
-const AuthenticatedMovilCalendarioRoute =
-  AuthenticatedMovilCalendarioRouteImport.update({
-    id: '/movil/calendario',
-    path: '/movil/calendario',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedMovilAsistenciaRoute =
-  AuthenticatedMovilAsistenciaRouteImport.update({
-    id: '/movil/asistencia',
-    path: '/movil/asistencia',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
+const MovilMovilCalendarioRoute = MovilMovilCalendarioRouteImport.update({
+  id: '/movil/calendario',
+  path: '/movil/calendario',
+  getParentRoute: () => MovilRouteRoute,
+} as any)
+const MovilMovilAsistenciaRoute = MovilMovilAsistenciaRouteImport.update({
+  id: '/movil/asistencia',
+  path: '/movil/asistencia',
+  getParentRoute: () => MovilRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -112,14 +102,12 @@ export interface FileRoutesByFullPath {
   '/actas': typeof AuthenticatedActasRoute
   '/crear-acta': typeof AuthenticatedCrearActaRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/evidencias': typeof AuthenticatedEvidenciasRoute
   '/inasistentes': typeof AuthenticatedInasistentesRoute
   '/seguimiento': typeof AuthenticatedSeguimientoRoute
   '/usuarios': typeof AuthenticatedUsuariosRoute
-  '/movil/asistencia': typeof AuthenticatedMovilAsistenciaRoute
-  '/movil/calendario': typeof AuthenticatedMovilCalendarioRoute
-  '/movil/qr': typeof AuthenticatedMovilQrRoute
-  '/movil/semaforo': typeof AuthenticatedMovilSemaforoRoute
+  '/movil/asistencia': typeof MovilMovilAsistenciaRoute
+  '/movil/calendario': typeof MovilMovilCalendarioRoute
+  '/movil/qr': typeof MovilMovilQrRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -128,32 +116,29 @@ export interface FileRoutesByTo {
   '/actas': typeof AuthenticatedActasRoute
   '/crear-acta': typeof AuthenticatedCrearActaRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
-  '/evidencias': typeof AuthenticatedEvidenciasRoute
   '/inasistentes': typeof AuthenticatedInasistentesRoute
   '/seguimiento': typeof AuthenticatedSeguimientoRoute
   '/usuarios': typeof AuthenticatedUsuariosRoute
-  '/movil/asistencia': typeof AuthenticatedMovilAsistenciaRoute
-  '/movil/calendario': typeof AuthenticatedMovilCalendarioRoute
-  '/movil/qr': typeof AuthenticatedMovilQrRoute
-  '/movil/semaforo': typeof AuthenticatedMovilSemaforoRoute
+  '/movil/asistencia': typeof MovilMovilAsistenciaRoute
+  '/movil/calendario': typeof MovilMovilCalendarioRoute
+  '/movil/qr': typeof MovilMovilQrRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/_movil': typeof MovilRouteRouteWithChildren
   '/demo': typeof DemoRoute
   '/login': typeof LoginRoute
   '/_authenticated/actas': typeof AuthenticatedActasRoute
   '/_authenticated/crear-acta': typeof AuthenticatedCrearActaRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
-  '/_authenticated/evidencias': typeof AuthenticatedEvidenciasRoute
   '/_authenticated/inasistentes': typeof AuthenticatedInasistentesRoute
   '/_authenticated/seguimiento': typeof AuthenticatedSeguimientoRoute
   '/_authenticated/usuarios': typeof AuthenticatedUsuariosRoute
-  '/_authenticated/movil/asistencia': typeof AuthenticatedMovilAsistenciaRoute
-  '/_authenticated/movil/calendario': typeof AuthenticatedMovilCalendarioRoute
-  '/_authenticated/movil/qr': typeof AuthenticatedMovilQrRoute
-  '/_authenticated/movil/semaforo': typeof AuthenticatedMovilSemaforoRoute
+  '/_movil/movil/asistencia': typeof MovilMovilAsistenciaRoute
+  '/_movil/movil/calendario': typeof MovilMovilCalendarioRoute
+  '/_movil/movil/qr': typeof MovilMovilQrRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -164,14 +149,12 @@ export interface FileRouteTypes {
     | '/actas'
     | '/crear-acta'
     | '/dashboard'
-    | '/evidencias'
     | '/inasistentes'
     | '/seguimiento'
     | '/usuarios'
     | '/movil/asistencia'
     | '/movil/calendario'
     | '/movil/qr'
-    | '/movil/semaforo'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -180,36 +163,34 @@ export interface FileRouteTypes {
     | '/actas'
     | '/crear-acta'
     | '/dashboard'
-    | '/evidencias'
     | '/inasistentes'
     | '/seguimiento'
     | '/usuarios'
     | '/movil/asistencia'
     | '/movil/calendario'
     | '/movil/qr'
-    | '/movil/semaforo'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/_movil'
     | '/demo'
     | '/login'
     | '/_authenticated/actas'
     | '/_authenticated/crear-acta'
     | '/_authenticated/dashboard'
-    | '/_authenticated/evidencias'
     | '/_authenticated/inasistentes'
     | '/_authenticated/seguimiento'
     | '/_authenticated/usuarios'
-    | '/_authenticated/movil/asistencia'
-    | '/_authenticated/movil/calendario'
-    | '/_authenticated/movil/qr'
-    | '/_authenticated/movil/semaforo'
+    | '/_movil/movil/asistencia'
+    | '/_movil/movil/calendario'
+    | '/_movil/movil/qr'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  MovilRouteRoute: typeof MovilRouteRouteWithChildren
   DemoRoute: typeof DemoRoute
   LoginRoute: typeof LoginRoute
 }
@@ -228,6 +209,13 @@ declare module '@tanstack/react-router' {
       path: '/demo'
       fullPath: '/demo'
       preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_movil': {
+      id: '/_movil'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof MovilRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -265,13 +253,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInasistentesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/evidencias': {
-      id: '/_authenticated/evidencias'
-      path: '/evidencias'
-      fullPath: '/evidencias'
-      preLoaderRoute: typeof AuthenticatedEvidenciasRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -293,33 +274,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedActasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/movil/semaforo': {
-      id: '/_authenticated/movil/semaforo'
-      path: '/movil/semaforo'
-      fullPath: '/movil/semaforo'
-      preLoaderRoute: typeof AuthenticatedMovilSemaforoRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/movil/qr': {
-      id: '/_authenticated/movil/qr'
+    '/_movil/movil/qr': {
+      id: '/_movil/movil/qr'
       path: '/movil/qr'
       fullPath: '/movil/qr'
-      preLoaderRoute: typeof AuthenticatedMovilQrRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      preLoaderRoute: typeof MovilMovilQrRouteImport
+      parentRoute: typeof MovilRouteRoute
     }
-    '/_authenticated/movil/calendario': {
-      id: '/_authenticated/movil/calendario'
+    '/_movil/movil/calendario': {
+      id: '/_movil/movil/calendario'
       path: '/movil/calendario'
       fullPath: '/movil/calendario'
-      preLoaderRoute: typeof AuthenticatedMovilCalendarioRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      preLoaderRoute: typeof MovilMovilCalendarioRouteImport
+      parentRoute: typeof MovilRouteRoute
     }
-    '/_authenticated/movil/asistencia': {
-      id: '/_authenticated/movil/asistencia'
+    '/_movil/movil/asistencia': {
+      id: '/_movil/movil/asistencia'
       path: '/movil/asistencia'
       fullPath: '/movil/asistencia'
-      preLoaderRoute: typeof AuthenticatedMovilAsistenciaRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      preLoaderRoute: typeof MovilMovilAsistenciaRouteImport
+      parentRoute: typeof MovilRouteRoute
     }
   }
 }
@@ -328,36 +302,43 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedActasRoute: typeof AuthenticatedActasRoute
   AuthenticatedCrearActaRoute: typeof AuthenticatedCrearActaRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedEvidenciasRoute: typeof AuthenticatedEvidenciasRoute
   AuthenticatedInasistentesRoute: typeof AuthenticatedInasistentesRoute
   AuthenticatedSeguimientoRoute: typeof AuthenticatedSeguimientoRoute
   AuthenticatedUsuariosRoute: typeof AuthenticatedUsuariosRoute
-  AuthenticatedMovilAsistenciaRoute: typeof AuthenticatedMovilAsistenciaRoute
-  AuthenticatedMovilCalendarioRoute: typeof AuthenticatedMovilCalendarioRoute
-  AuthenticatedMovilQrRoute: typeof AuthenticatedMovilQrRoute
-  AuthenticatedMovilSemaforoRoute: typeof AuthenticatedMovilSemaforoRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedActasRoute: AuthenticatedActasRoute,
   AuthenticatedCrearActaRoute: AuthenticatedCrearActaRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedEvidenciasRoute: AuthenticatedEvidenciasRoute,
   AuthenticatedInasistentesRoute: AuthenticatedInasistentesRoute,
   AuthenticatedSeguimientoRoute: AuthenticatedSeguimientoRoute,
   AuthenticatedUsuariosRoute: AuthenticatedUsuariosRoute,
-  AuthenticatedMovilAsistenciaRoute: AuthenticatedMovilAsistenciaRoute,
-  AuthenticatedMovilCalendarioRoute: AuthenticatedMovilCalendarioRoute,
-  AuthenticatedMovilQrRoute: AuthenticatedMovilQrRoute,
-  AuthenticatedMovilSemaforoRoute: AuthenticatedMovilSemaforoRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface MovilRouteRouteChildren {
+  MovilMovilAsistenciaRoute: typeof MovilMovilAsistenciaRoute
+  MovilMovilCalendarioRoute: typeof MovilMovilCalendarioRoute
+  MovilMovilQrRoute: typeof MovilMovilQrRoute
+}
+
+const MovilRouteRouteChildren: MovilRouteRouteChildren = {
+  MovilMovilAsistenciaRoute: MovilMovilAsistenciaRoute,
+  MovilMovilCalendarioRoute: MovilMovilCalendarioRoute,
+  MovilMovilQrRoute: MovilMovilQrRoute,
+}
+
+const MovilRouteRouteWithChildren = MovilRouteRoute._addFileChildren(
+  MovilRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  MovilRouteRoute: MovilRouteRouteWithChildren,
   DemoRoute: DemoRoute,
   LoginRoute: LoginRoute,
 }
