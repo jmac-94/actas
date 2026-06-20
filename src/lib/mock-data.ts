@@ -494,6 +494,59 @@ export function resumenPorArea() {
   });
 }
 
+export interface Usuario {
+  nombre: string;
+  email: string;
+  area: Area;
+  role: "superadmin" | "admin" | "convocador" | "asistente";
+  estado: "Activo" | "Inactivo";
+}
+
+export const USUARIOS: Usuario[] = [
+  {
+    nombre: "Patricia Vega",
+    email: "superadmin@actatrack.com",
+    area: "Calidad",
+    role: "superadmin",
+    estado: "Activo",
+  },
+  {
+    nombre: "Luis Ramírez",
+    email: "admin@actatrack.com",
+    area: "Acreditación",
+    role: "admin",
+    estado: "Activo",
+  },
+  {
+    nombre: "Ana Torres",
+    email: "convocador@actatrack.com",
+    area: "Evaluación",
+    role: "convocador",
+    estado: "Activo",
+  },
+  {
+    nombre: "Diego Herrera",
+    email: "asistente@actatrack.com",
+    area: "Comunicación",
+    role: "asistente",
+    estado: "Activo",
+  },
+  {
+    nombre: "Camila Flores",
+    email: "camila.flores@actatrack.com",
+    area: "Evaluación",
+    role: "convocador",
+    estado: "Activo",
+  },
+  {
+    nombre: "Mariana Soto",
+    email: "mariana.soto@actatrack.com",
+    area: "Comunicación",
+    role: "admin",
+    estado: "Activo",
+  },
+];
+
 export function metricasGenerales() {
   const acuerdos = ACTAS.flatMap((a) => a.acuerdos);
   const cumplidos = acuerdos.filter((a) => a.estado === "Cumplido").length;

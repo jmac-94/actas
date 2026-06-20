@@ -194,7 +194,7 @@ function Step1() {
             <span className="size-2 animate-pulse rounded-full bg-success" /> En vivo
           </span>
         </div>
-        <div className="grid grid-cols-3 gap-2 bg-secondary/40 p-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-secondary/40 p-4">
           {["Mariana Soto", "Ana Torres", "Luis Ramírez", "Camila Flores", "Jorge Díaz", "Sofía León"].map((p) => (
             <div key={p} className="flex flex-col items-center gap-1.5 rounded-xl bg-card p-2.5 shadow-soft">
               <span className="flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-bold text-primary-foreground">
@@ -420,7 +420,7 @@ function Step5() {
         <div className="mb-3 flex items-center gap-2 font-display text-sm font-bold text-primary">
           <LayoutDashboard className="size-4 text-accent" /> Dashboard de seguimiento
         </div>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           {kpis.map((k) => (
             <div key={k.l} className="rounded-xl bg-secondary/50 p-3 text-center">
               <div className="font-display text-xl font-extrabold text-primary">{k.v}</div>
@@ -428,7 +428,7 @@ function Step5() {
             </div>
           ))}
         </div>
-        <div className="mt-2 grid grid-cols-3 gap-2">
+        <div className="mt-2 grid grid-cols-1 sm:grid-cols-3 gap-2">
           {estados.map((e) => (
             <div key={e.l} className={`rounded-xl ${e.bg} p-3 text-center`}>
               <div className={`font-display text-xl font-extrabold ${e.color}`}>{e.v}</div>

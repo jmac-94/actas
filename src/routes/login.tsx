@@ -132,7 +132,7 @@ function AuthPage() {
             </p>
 
             {/* Estadísticas */}
-            <div className="mt-6 grid grid-cols-3 gap-3">
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
               {STATS.map((s) => (
                 <Card key={s.label} className="border bg-card/70 p-3 text-center backdrop-blur-sm sm:p-4">
                   <div className="font-display text-xl font-extrabold text-primary sm:text-2xl">{s.value}</div>

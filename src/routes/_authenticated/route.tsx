@@ -1,4 +1,9 @@
-import { createFileRoute, Outlet, redirect, useNavigate } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Outlet,
+  redirect,
+  useNavigate,
+} from "@tanstack/react-router";
 import { LogOut, ChevronDown } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
@@ -6,11 +11,16 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
-  DropdownMenuSeparator, DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useProfile, ROLE_LABEL, signOut } from "@/lib/use-auth";
+import { Chatbot } from "@/components/chatbot";
 
 import { LogoIso } from "@/components/logo";
 
@@ -52,8 +62,13 @@ function AppShell() {
               <div className="hidden items-center gap-2 sm:flex">
                 <LogoIso size="sm" />
                 <div>
-                  <p className="font-display text-sm font-semibold"><span className="text-accent">Compromet</span><span className="text-primary">IA</span></p>
-                  <p className="text-xs text-muted-foreground">Plataforma de gestión de actas</p>
+                  <p className="font-display text-sm font-semibold">
+                    <span className="text-accent">Compromet</span>
+                    <span className="text-primary">IA</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Plataforma de gestión de actas
+                  </p>
                 </div>
               </div>
             </div>
@@ -66,7 +81,9 @@ function AppShell() {
                     </AvatarFallback>
                   </Avatar>
                   <div className="hidden text-left sm:block">
-                    <p className="text-sm font-medium leading-none">{profile?.nombre}</p>
+                    <p className="text-sm font-medium leading-none">
+                      {profile?.nombre}
+                    </p>
                     <Badge variant="accent" className="mt-1 text-[10px]">
                       {ROLE_LABEL[role]}
                     </Badge>
@@ -77,11 +94,18 @@ function AppShell() {
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>
                   <p className="font-medium">{profile?.nombre}</p>
-                  <p className="text-xs font-normal text-muted-foreground">{profile?.email}</p>
-                  <p className="text-xs font-normal text-muted-foreground">Área: {profile?.area}</p>
+                  <p className="text-xs font-normal text-muted-foreground">
+                    {profile?.email}
+                  </p>
+                  <p className="text-xs font-normal text-muted-foreground">
+                    Área: {profile?.area}
+                  </p>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
+                <DropdownMenuItem
+                  onClick={handleSignOut}
+                  className="text-destructive"
+                >
                   <LogOut className="size-4" />
                   Cerrar sesión
                 </DropdownMenuItem>
@@ -93,6 +117,7 @@ function AppShell() {
           </main>
         </div>
       </div>
+      <Chatbot />
     </SidebarProvider>
   );
 }
