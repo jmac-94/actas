@@ -1,0 +1,9 @@
+services:
+  comprometia:
+    build: .
+    container_name: comprometia
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: unless-stopped
